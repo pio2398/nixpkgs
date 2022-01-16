@@ -1,14 +1,14 @@
 { lib, stdenv, fetchurl, pkg-config, attr, acl, zlib, libuuid, e2fsprogs, lzo
-, asciidoc, xmlto, docbook_xml_dtd_45, docbook_xsl, libxslt, zstd, python3
+, asciidoc, xmlto, docbook_xml_dtd_45, docbook_xsl, libxslt, zstd, python3, libudev
 }:
 
 stdenv.mkDerivation rec {
   pname = "btrfs-progs";
-  version = "5.14.1";
+  version = "5.16";
 
   src = fetchurl {
     url = "mirror://kernel/linux/kernel/people/kdave/btrfs-progs/btrfs-progs-v${version}.tar.xz";
-    sha256 = "sha256-1UqTRlRcpG3xKOPMt31gwJfZDJO34xSZAjbijPr4xVs=";
+    sha256 = "sha256-OKs80Z1BViJsrNaSaXL4Zqd7duw7lnfZiI77lTCjGDM=";
   };
 
   nativeBuildInputs = [
@@ -16,7 +16,7 @@ stdenv.mkDerivation rec {
     python3 python3.pkgs.setuptools
   ];
 
-  buildInputs = [ attr acl zlib libuuid e2fsprogs lzo zstd python3 ];
+  buildInputs = [ attr acl zlib libuuid e2fsprogs lzo zstd python3 libudev ];
 
   # for python cross-compiling
   _PYTHON_HOST_PLATFORM = stdenv.hostPlatform.config;
